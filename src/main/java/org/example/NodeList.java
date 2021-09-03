@@ -23,6 +23,16 @@ public class NodeList {
         }
     }
 
+    public Object showNode(int idx){
+        Node tmp;
+        
+        tmp = firstNode;
+        for (int i = 0; i < idx; i++) {
+            tmp = tmp.next;
+        }
+        return tmp.object;
+    }
+
     public void addNode(Object object){
         Node newNode = new Node(object);
         Node tmp;
