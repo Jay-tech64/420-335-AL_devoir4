@@ -12,7 +12,15 @@ public class NodeList {
     }
 
     public void print(int idx){
+        Node tmp;
 
+        System.out.println("Content of the linked list");
+        System.out.println("==========================");
+        tmp = firstNode;
+        for (int i = 0; i < nbNode; i++) {
+            System.out.println(tmp.object + " --> ");
+            tmp = tmp.next;
+        }
     }
 
     public void addNode(Object object){
@@ -27,7 +35,6 @@ public class NodeList {
             firstNode = lastNode = newNode;
         }
         nbNode++;
-
     }
 
     public int getSize(){
