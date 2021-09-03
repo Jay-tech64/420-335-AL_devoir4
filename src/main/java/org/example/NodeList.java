@@ -16,6 +16,17 @@ public class NodeList {
     }
 
     public void addNode(Object object){
+        Node newNode = new Node(object);
+        Node tmp;
+
+        if (nbNode > 0){
+            tmp = lastNode;
+            tmp.next = newNode;
+            lastNode = newNode;
+        } else {
+            firstNode = lastNode = newNode;
+        }
+        nbNode++;
 
     }
 
