@@ -4,11 +4,13 @@ public class HistoriqueFacture {
     public Node<Facture> firstNode;
     public Node<Facture> lastNode;
     private int nbNode;
+    private double totalFactures;
 
     public HistoriqueFacture() {
         firstNode = null;
         lastNode = null;
         nbNode = 0;
+        totalFactures = 0;
     }
 
     public void ajouterFacture(Facture facture){
@@ -22,6 +24,7 @@ public class HistoriqueFacture {
         } else {
             firstNode = lastNode = newNode;
         }
+        setTotalFactures(getTotalFactures() + newNode.object.getTotal());
         nbNode++;
     }
 
@@ -35,5 +38,13 @@ public class HistoriqueFacture {
             tmp = tmp.next;
         }
         return factures;
+    }
+
+    public double getTotalFactures() {
+        return totalFactures;
+    }
+
+    public void setTotalFactures(double totalFactures) {
+        this.totalFactures = totalFactures;
     }
 }

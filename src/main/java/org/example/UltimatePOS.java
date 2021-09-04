@@ -95,13 +95,13 @@ public class UltimatePOS {
 
     private void commandHistorique(){
         os.println("L'historique des factures : ");
-        double total = 0;
+        //double totalFactures = 0;
         for(Facture facture : historiqueFacture.getFactures()) {
             os.println(String.format("\t%s", facture.getTotal()));
-            //total += el.prixTotal();
+            //totalFactures += facture.getTotal();
         }
         os.println("-----------------------------------------------");
-        os.println(String.format("prix total : %.2f", facture.getTotal()));
+        os.println(String.format("total des factures : %.2f",historiqueFacture.getTotalFactures()));
         os.println("-----------------------------------------------");
 
     }
