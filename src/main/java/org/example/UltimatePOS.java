@@ -7,6 +7,8 @@ import java.io.PrintStream;
 public class UltimatePOS {
     private PrintStream os;
     private Facture facture;
+    private HistoriqueFacture historiqueFacture = new HistoriqueFacture();
+
 
     //Ajouter une liste de facture
 
@@ -44,6 +46,7 @@ public class UltimatePOS {
         os.println("\ta : Ajoute un element a la facture");
         os.println("\tp : Imprime la facture");
         os.println("\tn : Nouvelle facture");
+        os.println("\th : Afficher l'historique des factures");
         os.println("\tq : Quitter");
         os.println("\t? : Affiche la liste des commandes");
         os.println("\ts : Affiche l'ecran d'acceuil");
@@ -54,6 +57,7 @@ public class UltimatePOS {
             case "a" : commandAdd(); break;
             case "p" : commandPrint(); break;
             case "n" : commandNew(); break;
+            case "h" : commandHistorique(); break;
             case "q" : commandQuit(); break;
             case "?" : printCommands(); break;
             case "s" : printStartup(); printCommands(); break;
@@ -72,6 +76,8 @@ public class UltimatePOS {
         printCommands();
     }
 
+
+
     private void commandAdd(){
         String nom;
         int qt;
@@ -87,12 +93,26 @@ public class UltimatePOS {
         facture.ajouterElementFacture(new ElementFacture(nom, qt, prix));
     }
 
+    private void commandHistorique(){
+        os.println("L'historique des factures : ");
+        double total = 0;
+        for(Facture facture : historiqueFacture.getFactures()) {
+            os.println(String.format("\t%s", facture.getTotal()));
+            //total += el.prixTotal();
+        }
+        os.println("-----------------------------------------------");
+        os.println(String.format("prix total : %.2f", facture.getTotal()));
+        os.println("-----------------------------------------------");
+
+    }
+
     private void commandPrint() {
         os.println("La facture : ");
         double total = 0;
         for(ElementFacture el : facture.getElementsFacture()) {
             os.println(String.format("\t%s", el.toString()));
             total += el.prixTotal();
+            facture.setTotal(total);
         }
         os.println("-----------------------------------------------");
         os.println(String.format("prix total : %.2f", total));
@@ -103,6 +123,7 @@ public class UltimatePOS {
         try {
             os.println("On oublie l'ancienne facture...");
             // Avant de la supprimer, l'ajouter à une historique d'une liste de facture
+            historiqueFacture.ajouterFacture(facture);
             facture = new Facture();
             Thread.sleep(200);
             os.println("... Nouvelle facture prête à l'action!");
@@ -116,6 +137,7 @@ public class UltimatePOS {
         os.println("UltimatePOS : le leader des POS artisanaux bio-éthiques.");
         System.exit(0);
     }
+
 
     public static void main(String... args){
         UltimatePOS pos = new UltimatePOS();

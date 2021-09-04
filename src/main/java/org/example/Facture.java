@@ -4,6 +4,7 @@ public class Facture {
     public Node<ElementFacture> firstNode;
     public Node<ElementFacture> lastNode;
     private int nbNode;
+    private double total;
 
     public Facture() {
         firstNode = null;
@@ -37,6 +38,14 @@ public class Facture {
             tmp = tmp.next;
         }
         return items;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
 }
