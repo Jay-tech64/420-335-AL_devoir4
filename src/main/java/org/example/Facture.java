@@ -1,10 +1,8 @@
 package org.example;
 
-import javax.swing.text.Element;
-
 public class Facture {
-    public Node firstNode;
-    public Node lastNode;
+    public Node<ElementFacture> firstNode;
+    public Node<ElementFacture> lastNode;
     private int nbNode;
 
     public Facture() {
@@ -14,8 +12,8 @@ public class Facture {
     }
 
     public void ajouterElementFacture(ElementFacture el) {
-        Node newNode = new Node(el);
-        Node tmp;
+        Node<ElementFacture> newNode = new Node(el);
+        Node<ElementFacture> tmp;
 
         if (nbNode > 0){
             tmp = lastNode;
@@ -31,11 +29,11 @@ public class Facture {
 
     public ElementFacture[] getElementsFacture() {
         ElementFacture[] items = new ElementFacture[nbNode];
-        Node tmp;
+        Node<ElementFacture> tmp;
 
         tmp = firstNode;
         for (int i = 0; i < nbNode; i++) {
-            items[i] = tmp.elementFacture;
+            items[i] = tmp.object;
             tmp = tmp.next;
         }
         return items;
