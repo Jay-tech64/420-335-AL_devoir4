@@ -10,6 +10,7 @@ public class Facture {
         firstNode = null;
         lastNode = null;
         nbNode = 0;
+        total = 0;
     }
 
     public void ajouterElementFacture(ElementFacture el) {
@@ -23,6 +24,7 @@ public class Facture {
         } else {
             firstNode = lastNode = newNode;
         }
+        setTotal(getTotal() + newNode.object.prixTotal());
         nbNode++;
     }
 
