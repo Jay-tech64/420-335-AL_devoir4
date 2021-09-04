@@ -1,11 +1,11 @@
 package org.example;
 
-public class Node {
-    public ElementFacture elementFacture;
-    public Node next;
+public class Node<T> {
+    public T object;
+    public Node<T> next;
 
-    public Node(ElementFacture elementFacture){
-        this.elementFacture = elementFacture;
+    public Node(T t){
+        this.object = t;
         next = null;
     }
 }
